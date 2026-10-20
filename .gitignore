@@ -1,0 +1,18 @@
+# Build outputs
+**/target/
+**/node_modules/
+**/dist/
+**/build/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+**/application-local.properties
+
+# Logs and local tooling state
+*.log
+**/.idea/
+**/*.iml
+.DS_Store
+Thumbs.db
