@@ -1,4 +1,6 @@
-# KEYSTONE - Java Full-Stack Engineering Project
+# PROJECT-KEYSTONE
+
+Project KEYSTONE is a full-stack field service management platform designed to streamline maintenance operations for commercial facilities.
 
 This starter project follows the Zidio Project KEYSTONE brief.
 
