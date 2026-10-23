@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api";
 
 interface Summary {
   total: number;
@@ -21,7 +21,7 @@ export default function Dashboard() {
     const token = localStorage.getItem("token");
 
     axios
-      .get("http://localhost:8080/api/reports/summary", {
+      .get("/api/reports/summary", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -56,6 +56,18 @@ http://localhost:8080/api/test
 Expected:
 KEYSTONE backend is running!
 
+## Deploy the frontend to Vercel
+
+The React/Vite frontend can be deployed to Vercel. The Spring Boot API and PostgreSQL database must be hosted separately; Vercel does not run this backend as a standard Vercel Function.
+
+1. Deploy the `backend` Spring Boot application and its PostgreSQL database to a Java-capable hosting provider.
+2. In Vercel, import this Git repository and set **Root Directory** to `frontend`.
+3. Add the Vercel project environment variable `VITE_API_BASE_URL` with the backend's public base URL, such as `https://api.example.com` (no trailing slash and no `/api` suffix).
+4. Deploy. The Vercel configuration in `frontend/vercel.json` serves the Vite build and supports client-side routes.
+5. On the backend host, set `CORS_ALLOWED_ORIGINS` to the exact Vercel frontend origin, such as `https://keystone.vercel.app`. Add any preview origins you intend to use, separated by commas.
+
+Configure the backend host with its PostgreSQL connection (`SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, and `DB_PASSWORD`) and the required `JWT_SECRET`, `TECHNICIAN_PASSWORD`, `DISPATCHER_PASSWORD`, and `CUSTOMER_PASSWORD` environment variables. Never put backend secrets in Vercel's `VITE_*` variables; those are embedded in browser code.
+
 ## Next stage
 
 JWT authentication + Spring Security + seed users.

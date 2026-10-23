@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api";
 
 interface Customer {
   id: number;
@@ -30,7 +30,7 @@ export default function Customers() {
       setError("");
 
       const response = await axios.get(
-        "http://localhost:8080/api/customers",
+        "/api/customers",
         {
           headers: authHeaders,
         }
@@ -68,7 +68,7 @@ export default function Customers() {
       setError("");
 
       await axios.post(
-        "http://localhost:8080/api/customers",
+        "/api/customers",
         {
           name,
           contactEmail,

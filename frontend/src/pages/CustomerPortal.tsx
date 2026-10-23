@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api";
 
 interface WorkOrder {
   id: number;
@@ -46,7 +46,7 @@ export default function CustomerPortal() {
       setError("");
 
       const response = await axios.get(
-        `http://localhost:8080/api/work-orders/customer/${customerId}`,
+        `/api/work-orders/customer/${customerId}`,
         {
           headers: authHeaders,
         }

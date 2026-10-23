@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api";
 
 interface WorkOrder {
   id: number;
@@ -57,7 +57,7 @@ export default function WorkOrders() {
       setError("");
 
       const response = await axios.get(
-        "http://localhost:8080/api/work-orders?page=0&size=50",
+        "/api/work-orders?page=0&size=50",
         {
           headers: authHeaders,
         }
@@ -92,14 +92,22 @@ export default function WorkOrders() {
       setError("");
 
       await axios.post(
-      `http://localhost:8080/api/work-orders/${workOrderId}/assign?technicianId=${Number(
-           technicianId
-      )}`,
-       null,
-      {
-        headers: authHeaders,
-      }
-);
+        "/api/work-orders",
+        {
+          title,
+          description,
+          priority,
+          customerId: Number(customerId),
+          siteId: Number(siteId),
+          slaDueAt: slaDueAt || null,
+        },
+        {
+          headers: {
+            ...authHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       setTitle("");
       setDescription("");
@@ -145,7 +153,7 @@ export default function WorkOrders() {
       setError("");
 
       await axios.post(
-        `http://localhost:8080/api/work-orders/${workOrderId}/assign`,
+        `/api/work-orders/${workOrderId}/assign`,
         {
           technicianId: Number(technicianId),
         },

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api";
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 
@@ -29,7 +29,7 @@ export default function Manager() {
       setError("");
 
       const response = await axios.get(
-        "http://localhost:8080/api/reports/summary",
+        "/api/reports/summary",
         {
           headers: {
             Authorization: `Bearer ${token}`,

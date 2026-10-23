@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from "../api";
 
 interface Site {
   id: number;
@@ -39,7 +39,7 @@ export default function Sites() {
       setError("");
 
       const response = await axios.get(
-        `http://localhost:8080/api/customers/${Number(
+        `/api/customers/${Number(
           customerId
         )}/sites`,
         {
@@ -88,7 +88,7 @@ export default function Sites() {
       setError("");
 
       await axios.post(
-        `http://localhost:8080/api/customers/${Number(
+        `/api/customers/${Number(
           customerId
         )}/sites`,
         {

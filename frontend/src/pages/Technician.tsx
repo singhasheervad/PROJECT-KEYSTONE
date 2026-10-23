@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api";
 
 interface WorkOrder {
   id: number;
@@ -92,7 +92,7 @@ export default function Technician() {
       }
 
       const response = await axios.get(
-        `http://localhost:8080/api/work-orders/technician/${userId}`,
+        `/api/work-orders/technician/${userId}`,
         {
           headers: authHeaders,
         }
@@ -129,7 +129,7 @@ export default function Technician() {
       setMessage("");
 
       await axios.post(
-        `http://localhost:8080/api/work-orders/${id}/status`,
+        `/api/work-orders/${id}/status`,
         null,
         {
           params: {
@@ -162,13 +162,13 @@ export default function Technician() {
       const [partsResponse, timeResponse] =
         await Promise.all([
           axios.get(
-            `http://localhost:8080/api/work-orders/${id}/parts`,
+            `/api/work-orders/${id}/parts`,
             {
               headers: authHeaders,
             }
           ),
           axios.get(
-            `http://localhost:8080/api/work-orders/${id}/time`,
+            `/api/work-orders/${id}/time`,
             {
               headers: authHeaders,
             }
@@ -219,7 +219,7 @@ export default function Technician() {
       setMessage("");
 
       await axios.post(
-        `http://localhost:8080/api/work-orders/${orderId}/parts`,
+        `/api/work-orders/${orderId}/parts`,
         {
           partId,
           quantity,
@@ -283,7 +283,7 @@ export default function Technician() {
       setMessage("");
 
       await axios.post(
-        `http://localhost:8080/api/work-orders/${orderId}/time`,
+        `/api/work-orders/${orderId}/time`,
         {
           hours: hoursValue,
           description,
